@@ -12,13 +12,32 @@ class MyDocument extends Document<DocumentProps> {
     return (
       <Html>
         <Head>
+          <meta charSet="utf-8" />
+          <link
+            rel="shortcut icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="shortcut icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link
+            rel="shortcut apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <meta name="theme-color" content="#6C6CFF" />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>
         <body>
-          <ColorModeScript defaultColorMode="dark" />
+          <ColorModeScript defaultColorMode="light" />
           <Main />
           <NextScript />
         </body>

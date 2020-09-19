@@ -1,12 +1,12 @@
 import { AppProps } from 'next/app'
 
-import { ThemeContainer } from '~/context/theme'
+import { AppProvider } from '~/context'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeContainer>
+    <AppProvider>
       <Component {...pageProps} />
-    </ThemeContainer>
+    </AppProvider>
   )
 }
 

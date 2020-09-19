@@ -1,15 +1,11 @@
-import Head from 'next/head'
+import { Heading } from '@chakra-ui/core'
+
+import MainLayout from '~/layouts/main'
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Hefesto</title>
-      </Head>
-
-      <main>
-        <h1>Hefesto</h1>
-      </main>
-    </div>
+    <MainLayout title="Dashboard">
+      <Heading>Labx</Heading>
+    </MainLayout>
   )
 }
