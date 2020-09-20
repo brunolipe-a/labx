@@ -4,13 +4,13 @@ import {
   Button,
   Flex,
   useColorMode,
-  Heading,
   useColorModeValue,
   useDisclosure,
   Drawer,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton
+  DrawerCloseButton,
+  Image
 } from '@chakra-ui/core'
 import { MoonIcon, SunIcon, HamburgerIcon } from '@chakra-ui/icons'
 
@@ -28,20 +28,24 @@ export default function Header() {
     <Flex
       gridArea="header"
       bg={bgHeader}
-      boxShadow="rgba(14, 14, 20, 0.25) 0px 1px 4px 2px"
+      boxShadow="rgba(14, 14, 20, 0.1) 0px 1px 4px 2px"
       zIndex={1}
       px={8}
       alignItems="center"
       justifyContent="space-between"
     >
       <HamburgerIcon
-        display={{ base: 'block', lg: 'none' }}
+        display={{ base: 'block', md: 'none' }}
         onClick={onOpen}
         ref={btnRef}
         fontSize="2xl"
         cursor="pointer"
       />
-      <Heading fontSize="3xl">labx</Heading>
+      <Image
+        src={`/images/labx-logo-${colorMode}.png`}
+        alt="Logo Labx"
+        h={10}
+      />
       <Button colorScheme="brand" onClick={toggleColorMode}>
         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
       </Button>

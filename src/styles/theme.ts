@@ -1,7 +1,7 @@
 import { theme } from '@chakra-ui/core'
 import { merge } from '@chakra-ui/utils'
 
-export const customTheme = merge(theme, {
+export const customTheme: typeof theme = merge(theme, {
   fonts: {
     body: 'Roboto, system-ui, sans-serif',
     heading: 'Roboto, system-ui, sans-serif',
@@ -10,7 +10,7 @@ export const customTheme = merge(theme, {
   fontWeights: {
     normal: 400,
     medium: 500,
-    'bold-medium': 600,
+    semibold: 600,
     bold: 700
   },
   radii: {

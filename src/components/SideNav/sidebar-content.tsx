@@ -39,17 +39,17 @@ export const sidebar: SideBarItemParent[] = [
       {
         title: 'Default',
         icon: Icon(AiOutlinePicCenter),
-        toRouter: '/layout/default'
+        toRouter: '/layout'
       },
       {
         title: 'Secundary',
         icon: Icon(AiOutlinePicLeft),
-        toRouter: '/layout/secundary'
+        toRouter: '/layout'
       },
       {
         title: 'Boxed',
         icon: Icon(AiOutlinePicRight),
-        toRouter: '/layout/boxed'
+        toRouter: '/layout'
       }
     ]
   },

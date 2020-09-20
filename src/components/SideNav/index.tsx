@@ -6,7 +6,8 @@ import {
   AccordionPanel,
   Text,
   Flex,
-  Stack
+  Stack,
+  useColorModeValue
 } from '@chakra-ui/core'
 
 import NextLink from 'next/link'
@@ -17,17 +18,19 @@ import { sidebar } from './sidebar-content'
 export default function SideNav({ isNav = true }) {
   const router = useRouter()
 
+  const bgSideNav = useColorModeValue('gray.700', 'gray.700')
+
   return (
     <Stack
-      display={{ xs: isNav ? 'none' : 'flex', lg: 'flex' }}
+      display={{ xs: isNav ? 'none' : 'flex', md: 'flex' }}
       gridArea="sidebar"
       justifyContent="space-between"
       alignItems="stretch"
-      backgroundColor="gray.700"
+      backgroundColor={bgSideNav}
       overflowY="hidden"
       _hover={{ overflow: 'overlay' }}
     >
-      <Accordion allowToggle py={6}>
+      <Accordion allowToggle allowMultiple py={6}>
         {sidebar.map(({ toRouter, title, subtitle, links, icon }, index) => (
           <AccordionItem key={title + index} border={0} color="gray.200">
             <AccordionButton
