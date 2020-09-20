@@ -22,12 +22,12 @@ export default function MainLayout({ children, title }: MainProps) {
       <Grid
         as="main"
         height="100vh"
-        templateColumns="250px 1fr"
+        templateColumns={{ base: '1fr', lg: '250px 1fr' }}
         templateRows="60px 1fr"
-        templateAreas="
-        'header header'
-        'sidebar content'
-      "
+        templateAreas={{
+          base: "'header''content'",
+          lg: "'header header''sidebar content'"
+        }}
       >
         <Header />
         <SideNav />

@@ -14,11 +14,12 @@ import { useRouter } from 'next/router'
 
 import { sidebar } from './sidebar-content'
 
-export default function SideNav() {
+export default function SideNav({ isNav = true }) {
   const router = useRouter()
 
   return (
     <Stack
+      display={{ xs: isNav ? 'none' : 'flex', lg: 'flex' }}
       gridArea="sidebar"
       justifyContent="space-between"
       alignItems="stretch"
