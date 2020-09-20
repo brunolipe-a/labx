@@ -14,6 +14,9 @@ import {
 } from '@chakra-ui/core'
 import { MoonIcon, SunIcon, HamburgerIcon } from '@chakra-ui/icons'
 
+import logoDark from '~/assets/images/labx-logo-dark.png'
+import logoLight from '~/assets/images/labx-logo-light.png'
+
 import SideNav from '../SideNav'
 
 export default function Header() {
@@ -42,9 +45,9 @@ export default function Header() {
         cursor="pointer"
       />
       <Image
-        src={`/images/labx-logo-${colorMode}.png`}
-        alt="Logo Labx"
+        src={colorMode === 'dark' ? logoDark : logoLight}
         h={10}
+        alt="Logo Labx"
       />
       <Button colorScheme="brand" onClick={toggleColorMode}>
         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
