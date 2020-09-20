@@ -1,4 +1,5 @@
 import { ColorModeScript } from '@chakra-ui/core'
+
 import Document, {
   DocumentProps,
   Html,
@@ -31,8 +32,9 @@ class MyDocument extends Document<DocumentProps> {
             href="/apple-touch-icon.png"
           />
           <meta name="theme-color" content="#6C6CFF" />
+          <link rel="stylesheet" href="/css/global.css"></link>
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>

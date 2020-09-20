@@ -1,11 +1,21 @@
 import { Heading } from '@chakra-ui/core'
 
-import MainLayout from '~/layouts/main'
+import Breadcrumb, { Crumbs } from '~/components/Breadcrumb'
+
+import MainLayout from '~/layouts/Main'
+
+const crumbs: Crumbs[] = [
+  {
+    title: 'home',
+    route: '/'
+  }
+]
 
 export default function Home() {
   return (
-    <MainLayout title="Dashboard">
-      <Heading>Labx</Heading>
+    <MainLayout title="Home">
+      <Breadcrumb crumbs={crumbs} />
+      <Heading>Home</Heading>
     </MainLayout>
   )
 }

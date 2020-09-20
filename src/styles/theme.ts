@@ -9,7 +9,8 @@ export const customTheme = merge(theme, {
   },
   fontWeights: {
     normal: 400,
-    medium: 600,
+    medium: 500,
+    'bold-medium': 600,
     bold: 700
   },
   radii: {
@@ -35,8 +36,8 @@ export const customTheme = merge(theme, {
       400: '#8484AB',
       500: '#666691',
       600: '#545478',
-      700: '#393952',
-      750: '#313146',
+      700: '#323247',
+      750: '#2B2B3D',
       800: '#1F1F2C',
       900: '#0E0E14'
     },
