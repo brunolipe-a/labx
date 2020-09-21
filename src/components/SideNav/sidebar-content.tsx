@@ -2,11 +2,14 @@ import { IconType } from 'react-icons'
 import {
   AiFillHome,
   AiOutlineBorderInner,
+  AiOutlineInbox,
   AiOutlinePicCenter,
   AiOutlinePicLeft,
-  AiOutlinePicRight
+  AiOutlinePicRight,
+  AiOutlineTeam
 } from 'react-icons/ai'
-import { BiMap, BiMapPin } from 'react-icons/bi'
+import { CgLogIn } from 'react-icons/cg'
+import { HiOutlineSparkles } from 'react-icons/hi'
 
 import { Icon as ChakraIcon } from '@chakra-ui/icons'
 
@@ -22,15 +25,26 @@ interface SideBarItemParent extends SideBarItem {
 }
 
 function Icon(icon: IconType) {
-  return <ChakraIcon as={icon} ml={10} />
+  return <ChakraIcon as={icon} boxSize={5} ml={10} />
 }
 
 export const sidebar: SideBarItemParent[] = [
   {
     title: 'Dashboard',
-    subtitle: '12 atualizações',
+    subtitle: '12 Atualizações',
     icon: Icon(AiFillHome),
     toRouter: '/'
+  },
+  {
+    title: 'Email',
+    subtitle: '254 Novos Emails',
+    icon: Icon(AiOutlineInbox),
+    toRouter: '/email'
+  },
+  {
+    title: 'Social',
+    icon: Icon(AiOutlineTeam),
+    toRouter: '/social'
   },
   {
     title: 'Layouts',
@@ -54,13 +68,13 @@ export const sidebar: SideBarItemParent[] = [
     ]
   },
   {
-    title: 'Maps',
-    icon: Icon(BiMapPin),
+    title: 'Extra',
+    icon: Icon(HiOutlineSparkles),
     links: [
       {
-        title: 'GoogleMaps',
-        icon: Icon(BiMap),
-        toRouter: '/maps'
+        title: 'Login',
+        icon: Icon(CgLogIn),
+        toRouter: '/login'
       }
     ]
   }

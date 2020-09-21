@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 
 import {
-  Button,
   Flex,
   useColorMode,
   useColorModeValue,
@@ -10,7 +9,8 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Image
+  Image,
+  IconButton
 } from '@chakra-ui/core'
 import { MoonIcon, SunIcon, HamburgerIcon } from '@chakra-ui/icons'
 
@@ -46,12 +46,23 @@ export default function Header() {
       />
       <Image
         src={colorMode === 'dark' ? logoDark : logoLight}
-        h={10}
+        h={6}
         alt="Logo Labx"
       />
-      <Button colorScheme="brand" onClick={toggleColorMode}>
-        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-      </Button>
+      <IconButton
+        colorScheme="gray"
+        variant="link"
+        onClick={toggleColorMode}
+        aria-label="Toggle theme"
+        boxSize={8}
+        icon={
+          colorMode === 'light' ? (
+            <MoonIcon boxSize={5} />
+          ) : (
+            <SunIcon boxSize={5} />
+          )
+        }
+      />
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -60,7 +71,7 @@ export default function Header() {
       >
         <DrawerOverlay zIndex={2}>
           <DrawerContent bg="gray.700" pt={4}>
-            <DrawerCloseButton color="gray.100" />
+            <DrawerCloseButton color="gray.100" size="sm" />
             <SideNav isNav={false} />
           </DrawerContent>
         </DrawerOverlay>

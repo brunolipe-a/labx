@@ -47,7 +47,7 @@ export default function SideNav({ isNav = true }) {
                     {title}
                   </Text>
                   {subtitle && (
-                    <Text fontSize="xs" fontWeight="medium" opacity={0.5}>
+                    <Text fontSize="xs" fontWeight="medium" opacity={0.4}>
                       {subtitle}
                     </Text>
                   )}

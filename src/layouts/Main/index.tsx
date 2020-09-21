@@ -3,6 +3,7 @@ import React from 'react'
 import { Grid, Stack, useColorModeValue } from '@chakra-ui/core'
 
 import Head from 'next/head'
+import NextNprogress from 'nextjs-progressbar'
 
 import Header from '~/components/Header'
 import SideNav from '~/components/SideNav'
@@ -38,6 +39,7 @@ export default function MainLayout({ children, title }: MainProps) {
           overflowY="hidden"
           _hover={{ overflow: 'overlay' }}
         >
+          <NextNprogress color="#6c6cFF" options={{ showSpinner: false }} />
           {children}
         </Stack>
       </Grid>
