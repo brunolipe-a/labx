@@ -15,8 +15,13 @@ jobs:
         with:
           node-version: "12"
 
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: yarn install
 
       - name: Run TypeScript
-        run: yarn tsc
+        run: yarn type:check
