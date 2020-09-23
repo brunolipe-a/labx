@@ -7,3 +7,4 @@ yarn-error.log
 
 #jest
 coverage
+.nyc_output

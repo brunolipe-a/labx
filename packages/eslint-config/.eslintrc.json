@@ -15,6 +15,17 @@
     "prettier/react",
     "plugin:jest/all"
   ],
+
+  "overrides": [
+    {
+      "files": ["*.test.ts"],
+      "rules": {
+        "jest/expect-expect": "off",
+        "jest/no-done-callback": "off",
+        "jest/require-top-level-describe": "off"
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
