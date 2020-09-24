@@ -9,15 +9,9 @@
     ]
   },
   "scripts": {
-    "server:build": "yarn workspace server node ace build",
-    "server:test": "yarn server:build && yarn workspace server node build/japaFile.js",
-    "server:coverage": "nyc --reporter=lcov --report-dir='packages/server/coverage' yarn server:test",
     "lint": "eslint --ext .tsx,.ts .",
-    "type:check": "tsc -p ./packages/*/tsconfig.json ",
-    "test:dev": "jest --watch",
-    "test:debug": "jest -o --watch --coverage=false",
-    "test": "jest",
-    "test:coverage": "jest"
+    "type:check": "tsc -p ./packages/*/tsconfig.json",
+    "test": "yarn workspaces run test"
   },
   "husky": {
     "hooks": {

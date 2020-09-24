@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "build": "node ace build",
-    "start": "node ace serve --watch"
+    "start": "node ace serve --watch",
+    "test": "yarn build && node build/japaFile.js",
+    "test:coverage": "nyc --reporter=lcov --report-dir='./coverage' yarn test"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^2.0.0",

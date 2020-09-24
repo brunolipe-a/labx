@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:dev": "jest --watch",
+    "test:debug": "jest -o --watch --coverage=false",
+    "test": "jest --coverage=false",
+    "test:coverage": "jest"
   },
-
   "dependencies": {
     "@chakra-ui/core": "^1.0.0-rc.3",
     "@chakra-ui/icons": "^1.0.0-rc.3",
@@ -17,5 +20,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/source-map-support": "^0.5.3"
   }
 }
