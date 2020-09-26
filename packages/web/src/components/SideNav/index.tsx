@@ -27,8 +27,7 @@ export default function SideNav({ isNav = true }) {
       justifyContent="space-between"
       alignItems="stretch"
       backgroundColor={bgSideNav}
-      overflowY="hidden"
-      _hover={{ overflow: 'overlay' }}
+      overflow="overlay"
     >
       <Accordion allowToggle allowMultiple py={6}>
         {sidebar.map(({ toRouter, title, subtitle, links, icon }, index) => (

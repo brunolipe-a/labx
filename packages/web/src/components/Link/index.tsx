@@ -6,13 +6,21 @@ import {
 
 import NextLink from 'next/link'
 
-export default function Link({ children, href, ...rest }: ChakraLinkProps) {
-  const linkColor = useColorModeValue('brand.500', 'brand.300')
+export default function Link({
+  children,
+  href,
+  colorScheme = 'brand',
+  ...rest
+}: ChakraLinkProps) {
+  const linkColor = useColorModeValue(
+    `${colorScheme}.500`,
+    `${colorScheme}.300`
+  )
 
   return (
     <NextLink passHref href={href}>
       <ChakraLink
-        as="div"
+        as="a"
         textDecor="none"
         transition="0.3s"
         fontSize="xs"

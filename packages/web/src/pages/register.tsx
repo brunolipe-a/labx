@@ -1,12 +1,12 @@
-import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlineLock, AiOutlineMail } from 'react-icons/ai'
 
 import { Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/core'
 
 import { useRouter } from 'next/router'
 
+import AuthImage from '~/assets/auth-image-register.png'
 import BrandLogo from '~/assets/brand-icon-back.png'
 
-import Checkbox from '~/components/Checkbox'
 import Input from '~/components/Input'
 import Link from '~/components/Link'
 
@@ -16,27 +16,28 @@ export default function Login() {
   const router = useRouter()
 
   return (
-    <AuthLayout
-      title="Sign In"
-      reverse
-      sideTitle="Meet pages - The simplest and fastest way to build web UI for your
-    dashboard or app."
-    >
+    <AuthLayout title="Sign Up" image={AuthImage} sideTitle="Bem-vindo">
       <Flex direction="column" alignItems="flex-start" mt={10}>
         <Image src={BrandLogo} mb={8} />
         <Heading fontWeight="medium" fontSize="3xl" lineHeight={1.25}>
-          Começe hoje a
-          <br />
-          planejar suas sprints
+          Crie sua conta Labx
         </Heading>
-        <Text fontSize="sm" opacity={0.75} mb={5} mt={2}>
-          Faça login na sua conta
+        <Text fontSize="sm" opacity={0.75} mb={5}>
+          Começe hoje a planejar
         </Text>
         <Stack as="form" alignItems="stretch" w="full" spacing={3}>
           <Input
+            name="email"
+            placeholder="E-mail"
+            label="Email"
+            type="text"
+            variant="flushed"
+            icon={AiOutlineMail}
+          />
+          <Input
             name="username"
-            placeholder="ex: @joaosilva ou joao@example.com"
-            label="Usuário/E-mail"
+            placeholder="ex: @joaosilva"
+            label="Nome de Usuário"
             type="text"
             variant="flushed"
             icon={AiOutlineUser}
@@ -49,9 +50,14 @@ export default function Login() {
             variant="flushed"
             icon={AiOutlineLock}
           />
-          <Checkbox colorScheme="brand" spacing={2}>
-            Manter conectado
-          </Checkbox>
+          <Input
+            name="confirm-password"
+            placeholder="Confirmação"
+            label="Confirme a senha"
+            type="password"
+            variant="flushed"
+            icon={AiOutlineLock}
+          />
         </Stack>
         <Button
           onClick={() => router.push('/app')}
@@ -60,14 +66,11 @@ export default function Login() {
           colorScheme="brand"
           mt={4}
         >
-          Entrar
+          Criar conta
         </Button>
 
-        <Link href="/reset-password" mt={8}>
-          Esqueceu sua senha?
-        </Link>
-        <Link href="/register" mt={2}>
-          Não conta ainda? Registre-se.
+        <Link href="/login" mt={8}>
+          Já tem conta? Faça login.
         </Link>
       </Flex>
       <Text mt="auto !important" fontSize="xs" opacity={0.5}>

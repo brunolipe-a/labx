@@ -5,14 +5,20 @@ import { Grid, Stack, useColorModeValue } from '@chakra-ui/core'
 import Head from 'next/head'
 import NextNprogress from 'nextjs-progressbar'
 
+import Breadcrumb, { Crumbs } from '~/components/Breadcrumb'
 import Header from '~/components/Header'
 import SideNav from '~/components/SideNav'
 
 type MainProps = WithChildren<{
   title: string
+  breadcrumbs?: Crumbs[]
 }>
 
-export default function MainLayout({ children, title }: MainProps) {
+export default function MainLayout({
+  children,
+  title,
+  breadcrumbs
+}: MainProps) {
   const bgContent = useColorModeValue('gray.100', 'gray.800')
 
   return (
@@ -32,14 +38,9 @@ export default function MainLayout({ children, title }: MainProps) {
       >
         <Header />
         <SideNav />
-        <Stack
-          gridArea="content"
-          bg={bgContent}
-          px={8}
-          overflowY="hidden"
-          _hover={{ overflow: 'overlay' }}
-        >
+        <Stack gridArea="content" bg={bgContent} px={8} overflow="overlay">
           <NextNprogress color="#6c6cFF" options={{ showSpinner: false }} />
+          {breadcrumbs && <Breadcrumb crumbs={breadcrumbs} />}
           {children}
         </Stack>
       </Grid>

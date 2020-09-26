@@ -1,21 +1,35 @@
-import { Heading } from '@chakra-ui/core'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 
-import Breadcrumb, { Crumbs } from '~/components/Breadcrumb'
+import { Button, Heading, Stack } from '@chakra-ui/core'
 
-import MainLayout from '~/layouts/Main'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import NextNProgress from 'nextjs-progressbar'
 
-const crumbs: Crumbs[] = [
-  {
-    title: 'home',
-    route: '/'
-  }
-]
+import ToggleThemeButton from '~/components/ToggleThemeButton'
 
 export default function Home() {
+  const router = useRouter()
+
   return (
-    <MainLayout title="Home">
-      <Breadcrumb crumbs={crumbs} />
-      <Heading>Home</Heading>
-    </MainLayout>
+    <>
+      <Head>
+        <title>Labx</title>
+      </Head>
+      <NextNProgress color="#6c6cFF" options={{ showSpinner: false }} />
+      <Stack justify="center" align="center" h="100vh" spacing={6}>
+        <Heading textAlign="center" alignItems="center">
+          Bem-vindo ao Labx <ToggleThemeButton />
+        </Heading>
+        <Button
+          size="lg"
+          colorScheme="brand"
+          rightIcon={<AiOutlineArrowRight />}
+          onClick={() => router.push('/app')}
+        >
+          ENTRAR
+        </Button>
+      </Stack>
+    </>
   )
 }

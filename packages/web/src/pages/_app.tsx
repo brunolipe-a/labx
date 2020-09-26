@@ -2,10 +2,10 @@ import { AppProps } from 'next/app'
 
 import { AppProvider } from '~/context'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <AppProvider>
-      <Component {...pageProps} />
+      <Component {...pageProps} key={router.route} />
     </AppProvider>
   )
 }

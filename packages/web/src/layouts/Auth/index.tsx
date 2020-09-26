@@ -1,26 +1,27 @@
 import React from 'react'
 
-import {
-  Box,
-  Grid,
-  Heading,
-  Stack,
-  Text,
-  useColorModeValue
-} from '@chakra-ui/core'
+import { Flex, Grid, Heading, Stack, useColorModeValue } from '@chakra-ui/core'
 
 import Head from 'next/head'
 import NextNprogress from 'nextjs-progressbar'
 
+import AuthImage from '~/assets/auth-image.png'
+
+import Link from '~/components/Link'
+
 type AuthProps = WithChildren<{
   title: string
   reverse?: boolean
+  image?: string
+  sideTitle: string | React.ReactNode
 }>
 
 export default function AuthLayout({
   children,
   title,
-  reverse = false
+  sideTitle,
+  reverse = false,
+  image = AuthImage
 }: AuthProps) {
   const bgContent = useColorModeValue('white', 'gray.800')
 
@@ -43,14 +44,14 @@ export default function AuthLayout({
           md: !reverse ? "'image form'" : "'form image'"
         }}
       >
-        <Box
-          display={{ base: 'none', md: 'block' }}
+        <Flex
+          display={{ base: 'none', md: 'flex' }}
           gridArea="image"
           bg="brand.500"
           bgSize="cover"
           bgRepeat="no-repeat"
-          bgPos="bottom"
-          backgroundImage="url(https://storage.googleapis.com/kepler-marketing/community_login_cover_c.jpg)"
+          bgPos="center"
+          backgroundImage={`url(${image})`}
         >
           <Stack
             maxW="34rem"
@@ -65,24 +66,28 @@ export default function AuthLayout({
               fontWeight="medium"
               lineHeight={1.1}
             >
-              Meet pages - The simplest and fastest way to build web UI for your
-              dashboard or app.
+              {sideTitle}
             </Heading>
-            <Text as="span" fontSize="xs" fontWeight="regular" noOfLines={3}>
-              Our beautifully-designed UI Framework come with hundreds of
-              customizable features. Every Layout is just a starting point.
-              ©2019-2020 All Rights Reserved. Pages® is a registered trademark
-              of Revox Ltd.
-            </Text>
+
+            <Link
+              href="https://dribbble.com/Unini"
+              target="_blank"
+              rel="noopener noreferrer"
+              fontSize="sm"
+              colorScheme="brand"
+            >
+              illustration by Unini
+            </Link>
           </Stack>
-        </Box>
+        </Flex>
         <Stack
           gridArea="form"
           bg={bgContent}
           px={12}
           py={8}
-          overflowY="hidden"
-          _hover={{ overflow: 'overlay' }}
+          overflow="overlay"
+          boxShadow="rgba(14,14,20,0.1) -5px 1px 8px 3px"
+          zIndex={1}
         >
           <NextNprogress color="#6c6cFF" options={{ showSpinner: false }} />
           {children}

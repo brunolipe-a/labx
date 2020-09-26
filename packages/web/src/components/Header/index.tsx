@@ -2,7 +2,6 @@ import { useRef } from 'react'
 
 import {
   Flex,
-  useColorMode,
   useColorModeValue,
   useDisclosure,
   Drawer,
@@ -12,20 +11,18 @@ import {
   Image,
   IconButton
 } from '@chakra-ui/core'
-import { MoonIcon, SunIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons'
 
-import logoDark from '~/assets/images/labx-logo-dark.png'
-import logoLight from '~/assets/images/labx-logo-light.png'
+import logoLabx from '~/assets/images/labx-logo-light.png'
 
 import SideNav from '../SideNav'
+import LeftSideHeader from './LeftSideHeader'
 
 export default function Header() {
-  const { toggleColorMode, colorMode } = useColorMode()
+  const bgHeader = useColorModeValue('white', 'gray.750')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const btnRef = useRef()
-
-  const bgHeader = useColorModeValue('white', 'gray.750')
 
   return (
     <Flex
@@ -37,32 +34,17 @@ export default function Header() {
       alignItems="center"
       justifyContent="space-between"
     >
-      <HamburgerIcon
+      <IconButton
+        ref={btnRef}
         display={{ base: 'block', md: 'none' }}
         onClick={onOpen}
-        ref={btnRef}
-        fontSize="2xl"
-        cursor="pointer"
-      />
-      <Image
-        src={colorMode === 'dark' ? logoDark : logoLight}
-        h={6}
-        alt="Logo Labx"
-      />
-      <IconButton
+        aria-label="Toggle SideMenu"
+        icon={<HamburgerIcon boxSize={6} />}
+        variant="ghost"
         colorScheme="gray"
-        variant="link"
-        onClick={toggleColorMode}
-        aria-label="Toggle theme"
-        boxSize={8}
-        icon={
-          colorMode === 'light' ? (
-            <MoonIcon boxSize={5} />
-          ) : (
-            <SunIcon boxSize={5} />
-          )
-        }
       />
+      <Image src={logoLabx} h={6} alt="Logo Labx" />
+      <LeftSideHeader />
       <Drawer
         isOpen={isOpen}
         placement="left"

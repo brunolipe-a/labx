@@ -8,7 +8,7 @@ import {
   AiOutlinePicRight,
   AiOutlineTeam
 } from 'react-icons/ai'
-import { CgLogIn } from 'react-icons/cg'
+import { CgLogIn, CgUserAdd } from 'react-icons/cg'
 import { HiOutlineSparkles } from 'react-icons/hi'
 
 import { Icon as ChakraIcon } from '@chakra-ui/icons'
@@ -75,6 +75,11 @@ export const sidebar: SideBarItemParent[] = [
         title: 'Login',
         icon: Icon(CgLogIn),
         toRouter: '/login'
+      },
+      {
+        title: 'Registre-se',
+        icon: Icon(CgUserAdd),
+        toRouter: '/register'
       }
     ]
   }
