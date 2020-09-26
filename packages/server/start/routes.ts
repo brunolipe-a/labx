@@ -27,5 +27,5 @@ Route.get('/', async () => {
     password: '123456'
   })
 
-  return { message: user }
+  return { user }
 })
