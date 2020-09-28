@@ -12,6 +12,7 @@
     "@adonisjs/assembler": "^2.0.0",
     "@types/jsdom": "^16.2.4",
     "@types/supertest": "^2.0.10",
+    "@types/uuid": "^8.3.0",
     "adonis-preset-ts": "^1.0.4",
     "execa": "^4.0.3",
     "get-port": "^5.1.1",
@@ -29,12 +30,18 @@
     "@adonisjs/core": "^5.0.0-preview-rc",
     "@adonisjs/fold": "^6.0.0",
     "@adonisjs/lucid": "^8.4.3",
+    "@adonisjs/mail": "^4.2.2",
+    "@adonisjs/view": "^2.0.9",
+    "@hipsjs/adonis-lucid-uuid": "^1.0.1",
+    "date-fns": "^2.16.1",
     "luxon": "^1.25.0",
     "pg": "^8.3.3",
     "phc-argon2": "^1.0.10",
     "proxy-addr": "^2.0.6",
+    "rand-token": "^1.0.1",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "uuid": "^8.3.0"
   }
 }

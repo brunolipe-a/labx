@@ -6,6 +6,7 @@
  */
 
 import { AuthConfig } from '@ioc:Adonis/Addons/Auth'
+
 import User from 'App/Models/User'
 
 /*
@@ -81,7 +82,7 @@ const authConfig: AuthConfig = {
         | of the mentioned columns to find their user record.
         |
         */
-        uids: ['email'],
+        uids: ['email', 'username'],
 
         /*
         |--------------------------------------------------------------------------

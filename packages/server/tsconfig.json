@@ -13,7 +13,9 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      "Test/*": ["./__test__/*"],
+      "Test/*": [
+        "./__test__/*"
+      ],
       "App/*": [
         "./app/*"
       ],
@@ -27,7 +29,10 @@
     "types": [
       "@adonisjs/core",
       "@adonisjs/auth",
-      "@adonisjs/lucid"
+      "@adonisjs/lucid",
+      "@hipsjs/adonis-lucid-uuid",
+      "@adonisjs/mail",
+      "@adonisjs/view"
     ]
   }
 }

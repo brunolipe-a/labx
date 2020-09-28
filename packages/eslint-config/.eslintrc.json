@@ -52,6 +52,9 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "jest/prefer-expect-assertions": "off",
     "jest/lowercase-name": "off",
+    "no-useless-constructor": "off",
+    "camelcase": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "import-helpers/order-imports": [
       "warn",
       {
@@ -65,6 +68,8 @@
               "/^~/components/",
               "/^~/pages/",
               "/^~/hooks/",
+              "/^@ioc/",
+              "/^App/",
               "/^~/",
               ["parent", "sibling", "index"],
               "/^./data/",

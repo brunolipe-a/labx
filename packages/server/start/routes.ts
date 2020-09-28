@@ -18,14 +18,18 @@
 |
 */
 
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
-import User from 'App/Models/User'
 
 Route.get('/', async () => {
-  const user = await User.create({
-    email: 'johndoe@example.com',
-    password: '123456'
-  })
+  return { message: 'connected' }
+})
 
-  return { user }
+Route.post('/sessions', 'SessionsController.store')
+Route.post('/users', 'UsersController.store')
+Route.post('/reset-password', 'ForgotPasswordsController.store')
+Route.post('/change-password', 'ForgotPasswordsController.update')
+
+Route.get('/healthz', async () => {
+  return HealthCheck.getReport()
 })
