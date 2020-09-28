@@ -1,14 +1,13 @@
-import { addMinutes, isFuture } from 'date-fns'
-import { DateTime } from 'luxon'
+import { isFuture } from 'date-fns'
 import { generate } from 'rand-token'
 
-import Mail from '@ioc:Adonis/Addons/Mail'
-import Env from '@ioc:Adonis/Core/Env'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import AppException from 'App/Exceptions/AppException'
 import User from 'App/Models/User'
+import GenerateExpiresAtService from 'App/Service/GenerateExpiresAtService'
+import SendMailService from 'App/Service/SendMailService'
 import StoreValidator from 'App/Validators/ForgetPassword/StoreValidator'
 import UpdateValidator from 'App/Validators/ForgetPassword/UpdateValidator'
 
@@ -25,20 +24,20 @@ export default class ForgotPasswordsController {
       {
         type: 'forgotpassword',
         name: 'Forgot Password',
-        token: await Hash.make(num),
-        expiresAt: DateTime.fromJSDate(addMinutes(new Date(), 30))
+        token: num,
+        expiresAt: GenerateExpiresAtService.generate()
       }
     )
 
-    Mail.send(message => {
-      message
-        .from(Env.get('MAIL_FROM') as string)
-        .to(email, user.name)
-        .subject('Labx - Recuperação de email')
-        .htmlView('emails/forgotpassword', {
-          user,
-          token: num
-        })
+    SendMailService.send({
+      email,
+      name: user.name,
+      html: 'emails/forgotpassword',
+      subject: 'Recuperação de email',
+      data: {
+        user,
+        token: num
+      }
     })
 
     return response.status(204)
@@ -67,7 +66,8 @@ export default class ForgotPasswordsController {
     }
 
     if (!expiresAt || !isFuture(expiresAt.toJSDate())) {
-      throw new AppException('Token expirado')
+      await tokenInstance.delete()
+      throw new AppException('Token expirado', 401)
     }
 
     user.password = new_password

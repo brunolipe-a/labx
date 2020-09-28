@@ -1,6 +1,14 @@
 import { DateTime } from 'luxon'
+import { v4 as uuid, validate } from 'uuid'
 
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import Hash from '@ioc:Adonis/Core/Hash'
+import {
+  BaseModel,
+  beforeSave,
+  BelongsTo,
+  belongsTo,
+  column
+} from '@ioc:Adonis/Lucid/Orm'
 
 import User from './User'
 
@@ -30,4 +38,17 @@ export default class Token extends BaseModel {
 
   @column.dateTime()
   public expiresAt: DateTime
+
+  @beforeSave()
+  public static async hashToken(token: Token) {
+    if (validate(token.token)) {
+      return
+    }
+
+    if (token.$dirty.token) {
+      token.token = await Hash.make(token.token)
+    } else {
+      token.token = uuid()
+    }
+  }
 }

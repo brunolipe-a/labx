@@ -29,6 +29,7 @@ Route.post('/sessions', 'SessionsController.store')
 Route.post('/users', 'UsersController.store')
 Route.post('/reset-password', 'ForgotPasswordsController.store')
 Route.post('/change-password', 'ForgotPasswordsController.update')
+Route.post('/verify', 'ActivateUsersController.update')
 
 Route.get('/healthz', async () => {
   return HealthCheck.getReport()

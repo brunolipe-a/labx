@@ -14,7 +14,7 @@ const request = supertest(process.env.APP_URL)
 
 const FORGOT_TOKEN_EXPIRES_IN = 30
 
-test.group('Session', group => {
+test.group('Forgot Password', group => {
   group.beforeEach(async () => {
     await Database.beginGlobalTransaction()
   })
@@ -59,10 +59,8 @@ test.group('Session', group => {
       new_password_confirmation: 'new-password'
     }
 
-    const hash = await Hash.make(token_num)
-
     const user = await UserFactory.with('tokens', 1, token =>
-      token.merge({ token: hash }).apply('forgotpassword')
+      token.merge({ token: token_num }).apply('forgotpassword')
     ).create()
 
     await request
@@ -90,10 +88,8 @@ test.group('Session', group => {
       new_password_confirmation: 'new-password'
     }
 
-    const hash = await Hash.make(token_num)
-
     const user = await UserFactory.with('tokens', 1, token =>
-      token.merge({ token: hash }).apply('forgotpassword')
+      token.merge({ token: token_num }).apply('forgotpassword')
     ).create()
 
     const { body } = await request
@@ -116,10 +112,8 @@ test.group('Session', group => {
       new_password_confirmation: 'new-password'
     }
 
-    const hash = await Hash.make(token_num)
-
     const user = await UserFactory.with('tokens', 1, token =>
-      token.merge({ token: hash }).apply('expireNow', 'forgotpassword')
+      token.merge({ token: token_num }).apply('expireNow', 'forgotpassword')
     ).create()
 
     const { body } = await request
@@ -130,8 +124,11 @@ test.group('Session', group => {
         new_password_confirmation,
         token_num
       })
-      .expect(400)
+      .expect(401)
 
+    const token = await Token.find(user.tokens[0].id)
+
+    assert.isNull(token)
     assert.exists(body.errors)
   })
 })

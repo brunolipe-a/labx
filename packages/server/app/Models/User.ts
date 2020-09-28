@@ -30,6 +30,9 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken?: string
 
+  @column({ consume: (value: number) => !!value })
+  public isActive: boolean
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
