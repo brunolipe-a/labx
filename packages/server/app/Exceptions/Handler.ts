@@ -27,15 +27,15 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     }
 
     if (error.code === 'E_INVALID_AUTH_UID') {
-      return ctx.response
-        .status(401)
-        .send({ errors: [{ message: 'Usuário/Email invalído' }] })
+      return ctx.response.status(401).send({
+        errors: [{ message: 'Usuário/Email invalído', field: 'username' }]
+      })
     }
 
     if (error.code === 'E_INVALID_AUTH_PASSWORD') {
       return ctx.response
         .status(401)
-        .send({ errors: [{ message: 'Senha invalída' }] })
+        .send({ errors: [{ message: 'Senha invalída', field: 'password' }] })
     }
 
     return super.handle(error, ctx)

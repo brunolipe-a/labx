@@ -67,9 +67,9 @@ test.group('Session', group => {
       .send({ username: 'invalid-username', password })
       .expect(401)
 
-    assert.exists(body.errors)
-    assert.containsAllKeys(body.errors[0], ['message'])
+    assert.containsAllKeys(body.errors[0], ['message', 'field'])
     assert.isString(body.errors[0].message)
+    assert.isString(body.errors[0].field)
   })
 
   test('it should be able return error if invalid password', async assert => {
@@ -80,8 +80,8 @@ test.group('Session', group => {
       .send({ username, password: 'invalid-password' })
       .expect(401)
 
-    assert.exists(body.errors)
-    assert.containsAllKeys(body.errors[0], ['message'])
+    assert.containsAllKeys(body.errors[0], ['message', 'field'])
     assert.isString(body.errors[0].message)
+    assert.isString(body.errors[0].field)
   })
 })
