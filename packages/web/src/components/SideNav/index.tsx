@@ -18,7 +18,7 @@ import { sidebar } from './sidebar-content'
 export default function SideNav({ isNav = true }) {
   const router = useRouter()
 
-  const bgSideNav = useColorModeValue('gray.700', 'gray.700')
+  const bgSideNav = useColorModeValue('gray.750', 'gray.800')
 
   return (
     <Stack
@@ -29,9 +29,9 @@ export default function SideNav({ isNav = true }) {
       backgroundColor={bgSideNav}
       overflow="overlay"
     >
-      <Accordion allowToggle allowMultiple py={6}>
+      <Accordion allowToggle allowMultiple py={6} color="gray.400">
         {sidebar.map(({ toRouter, title, subtitle, links, icon }, index) => (
-          <AccordionItem key={title + index} border={0} color="gray.200">
+          <AccordionItem key={title + index} border={0}>
             <AccordionButton
               px={8}
               h="50px"
@@ -56,13 +56,7 @@ export default function SideNav({ isNav = true }) {
               </Flex>
             </AccordionButton>
             {links && (
-              <AccordionPanel
-                py={5}
-                pl={10}
-                pr={8}
-                color="gray.300"
-                bg="gray.800"
-              >
+              <AccordionPanel py={5} pl={10} pr={8} bg="gray.900">
                 <Stack spacing={4}>
                   {links.map(({ title, icon, toRouter }, index) => (
                     <NextLink href={toRouter} key={title + index}>

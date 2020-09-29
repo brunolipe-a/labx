@@ -25,7 +25,7 @@ export default function Home() {
           size="lg"
           colorScheme="brand"
           rightIcon={<AiOutlineArrowRight />}
-          onClick={() => router.push('/app')}
+          onClick={() => router.push('/login')}
         >
           ENTRAR
         </Button>
