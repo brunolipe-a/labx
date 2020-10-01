@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "packages/server"
+		},
+		{
+			"path": "packages/web"
+		},
+		{
+			"path": "packages/eslint-config"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
