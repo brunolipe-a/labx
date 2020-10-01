@@ -23,6 +23,7 @@ import { setFormErrors, validateErrors } from '~/utils/validateFrom'
 const shape = Yup.object().shape<CreateFormData>({
   email: Yup.string().required('Campo obrigatório'),
   name: Yup.string().required('Campo obrigatório'),
+  username: Yup.string().required('Campo obrigatório'),
   password: Yup.string().min(6, 'Senha deve ter no mínimo seis caracteres'),
   password_confirmation: Yup.string()
     .min(6, 'Confirmação deve ter no mínimo seis caracteres')
@@ -123,7 +124,7 @@ export default function Login() {
           </Stack>
         </Form>
 
-        <Link href="/login" mt={8}>
+        <Link href="/login" mt={8} mb={4}>
           Já tem conta? Faça login.
         </Link>
       </Flex>

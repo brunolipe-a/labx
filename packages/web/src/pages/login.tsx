@@ -109,7 +109,7 @@ export default function Login() {
         <Link href="/reset-password" mt={8}>
           Esqueceu sua senha?
         </Link>
-        <Link href="/register" mt={2}>
+        <Link href="/register" mt={2} mb={4}>
           Não conta ainda? Registre-se.
         </Link>
       </Flex>
