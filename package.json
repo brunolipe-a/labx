@@ -11,7 +11,10 @@
   "scripts": {
     "lint": "eslint --ext .tsx,.ts .",
     "type:check": "tsc -p ./packages/*/tsconfig.json",
-    "test": "yarn workspaces run test"
+    "test": "yarn workspaces run test",
+    "web:start": "yarn workspace @labx/web dev",
+    "server:start": "yarn workspace @labx/server start"
+
   },
   "husky": {
     "hooks": {
