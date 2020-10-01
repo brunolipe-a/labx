@@ -13,7 +13,9 @@
     "type:check": "tsc -p ./packages/*/tsconfig.json",
     "test": "yarn workspaces run test",
     "web:start": "yarn workspace @labx/web dev",
-    "server:start": "yarn workspace @labx/server start"
+    "web:test": "yarn workspace @labx/web test",
+    "server:start": "yarn workspace @labx/server start",
+    "server:test": "yarn workspace @labx/server test"
 
   },
   "husky": {
