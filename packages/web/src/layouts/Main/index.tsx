@@ -8,6 +8,7 @@ import NextNprogress from 'nextjs-progressbar'
 import { Crumbs } from '~/components/Breadcrumb'
 import Content from '~/components/Content'
 import Header from '~/components/Header'
+import { PrivateRoute } from '~/components/PrivateRoute'
 import SideHeader from '~/components/SideHeader'
 import SideNav from '~/components/SideNav'
 
@@ -22,7 +23,7 @@ export default function MainLayout({
   breadcrumbs
 }: MainProps) {
   return (
-    <>
+    <PrivateRoute>
       <Head>
         <title>Labx - {title}</title>
       </Head>
@@ -42,6 +43,6 @@ export default function MainLayout({
         <SideNav />
         <Content breadcrumbs={breadcrumbs}>{children}</Content>
       </Grid>
-    </>
+    </PrivateRoute>
   )
 }

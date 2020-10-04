@@ -33,18 +33,18 @@ export const sidebar: SideBarItemParent[] = [
     title: 'Dashboard',
     subtitle: '12 Atualizações',
     icon: Icon(AiFillHome),
-    toRouter: '/'
+    toRouter: '/app'
   },
   {
     title: 'Email',
     subtitle: '254 Novos Emails',
     icon: Icon(AiOutlineInbox),
-    toRouter: '/email'
+    toRouter: '/app/email'
   },
   {
     title: 'Social',
     icon: Icon(AiOutlineTeam),
-    toRouter: '/social'
+    toRouter: '/app/social'
   },
   {
     title: 'Layouts',
@@ -53,17 +53,17 @@ export const sidebar: SideBarItemParent[] = [
       {
         title: 'Default',
         icon: Icon(AiOutlinePicCenter),
-        toRouter: '/layout'
+        toRouter: '/app/layout'
       },
       {
         title: 'Secundary',
         icon: Icon(AiOutlinePicLeft),
-        toRouter: '/layout'
+        toRouter: '/app/layout'
       },
       {
         title: 'Boxed',
         icon: Icon(AiOutlinePicRight),
-        toRouter: '/layout'
+        toRouter: '/app/layout'
       }
     ]
   },

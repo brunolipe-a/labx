@@ -53,7 +53,7 @@ type AuthContextValue = {
   loading: boolean
   signIn(data: SignInFormData): Promise<ApiResponse>
   createUser(data: CreateFormData): Promise<ApiResponse>
-  signOut(): Promise<void>
+  signOut(): void
 }
 
 const AuthContext = createContext<AuthContextValue>({} as AuthContextValue)
@@ -63,14 +63,17 @@ const AuthProvider = ({ children }: WithChildren) => {
 
   const [user, setUser] = useState<User>({} as User)
   const [loading, setLoading] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const signOut = useCallback(async (): Promise<void> => {
+  const signOut = useCallback((): void => {
+    console.log('teste')
     localStorage.removeItem('@Labx:token')
     localStorage.removeItem('@Labx:keep')
 
     setUser({} as User)
+    setIsAuthenticated(false)
 
-    router.push('/')
+    router.push('/login')
   }, [router])
 
   useEffect(() => {
@@ -85,6 +88,7 @@ const AuthProvider = ({ children }: WithChildren) => {
           const { data } = await api.get<CheckMe>('users/me')
 
           setUser(data.user)
+          setIsAuthenticated(true)
         } catch (e) {
           console.error(e)
         }
@@ -112,6 +116,7 @@ const AuthProvider = ({ children }: WithChildren) => {
         api.defaults.headers.authorization = `Bearer ${token}`
 
         setUser(user)
+        setIsAuthenticated(true)
 
         return { isSuccess: true }
       } catch (err) {
@@ -129,9 +134,7 @@ const AuthProvider = ({ children }: WithChildren) => {
 
   const createUser = useCallback(async (payload: CreateFormData) => {
     try {
-      const { data } = await api.post<{ message: string }>('/users', payload)
-
-      console.log(data)
+      await api.post<{ message: string }>('/users', payload)
 
       return { isSuccess: true }
     } catch (err) {
@@ -148,7 +151,7 @@ const AuthProvider = ({ children }: WithChildren) => {
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated: !!user,
+        isAuthenticated,
         user,
         loading,
         signIn,

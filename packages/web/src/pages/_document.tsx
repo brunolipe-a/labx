@@ -14,6 +14,7 @@ class MyDocument extends Document<DocumentProps> {
       <Html>
         <Head>
           <meta charSet="utf-8" />
+          <title>Labx</title>
           <link
             rel="shortcut icon"
             type="image/png"
