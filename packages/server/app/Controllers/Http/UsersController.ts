@@ -33,4 +33,10 @@ export default class UsersController {
 
     return { message: 'User created with success' }
   }
+
+  public async show({ auth }: HttpContextContract) {
+    const { email, username, id, name } = auth.user as User
+
+    return { email, username, id, name }
+  }
 }

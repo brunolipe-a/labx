@@ -25,12 +25,16 @@ Route.get('/', async () => {
   return { message: 'connected' }
 })
 
+Route.get('/healthz', async () => {
+  return HealthCheck.getReport()
+})
+
 Route.post('/sessions', 'SessionsController.store')
 Route.post('/users', 'UsersController.store')
 Route.post('/reset-password', 'ForgotPasswordsController.store')
 Route.post('/change-password', 'ForgotPasswordsController.update')
 Route.post('/verify', 'ActivateUsersController.update')
 
-Route.get('/healthz', async () => {
-  return HealthCheck.getReport()
-})
+Route.group(() => {
+  Route.get('/users/me', 'UsersController.show')
+}).middleware('auth')

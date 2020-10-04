@@ -145,4 +145,40 @@ test.group('User', group => {
     assert.exists(body.errors)
     assert.isFalse(updatedUser.isActive)
   })
+
+  test('it should be able to return signed user data', async assert => {
+    const password = '123456'
+
+    const { username, email, name, id } = await UserFactory.merge({
+      password
+    }).create()
+
+    const res = await request
+      .post('/sessions')
+      .send({ username, password })
+      .expect(200)
+
+    const token = res.body.token
+
+    const { body } = await request
+      .get('/users/me')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200)
+
+    assert.deepInclude(body, { username, email, name, id })
+  })
+
+  test('it should be able to return error is user is not signed', async assert => {
+    const password = '123456'
+
+    const { username } = await UserFactory.merge({
+      password
+    }).create()
+
+    await request.post('/sessions').send({ username, password }).expect(200)
+
+    const { body } = await request.get('/users/me').expect(401)
+
+    assert.exists(body.errors)
+  })
 })
