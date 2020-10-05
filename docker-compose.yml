@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  web:
+    image: labx
+    container_name: web
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/usr/app'
+    command: 'yarn web:start'
+
+  server:
+    image: labx
+    container_name: server
+    ports:
+      - '3333:3333'
+    volumes:
+      - '.:/usr/app'
+    command: 'yarn server:start'
+
+  database:
+    image: postgres
+    container_name: database
+    volumes:
+      - '.docker/database:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: labx
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+
+volumes:
+  database:
+    driver: local

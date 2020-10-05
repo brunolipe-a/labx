@@ -1,20 +1,50 @@
 {
   "name": "labx",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "main": "index.js",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "dependencies": {
-    "next": "9.5.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+  "scripts": {
+    "lint": "eslint --ext .tsx,.ts .",
+    "type:check": "tsc -p ./packages/*/tsconfig.json",
+    "test": "yarn workspaces run test",
+    "web:start": "yarn workspace @labx/web dev",
+    "web:test": "yarn workspace @labx/web test",
+    "server:start": "yarn workspace @labx/server start",
+    "server:test": "yarn workspace @labx/server test"
+
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --allow-empty",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "yarn test --bail --findRelatedTests"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@labx/eslint-config": "*",
+    "@types/jest": "^26.0.14",
     "@types/node": "^14.11.1",
     "@types/react": "^16.9.49",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "nyc": "^15.1.0",
+    "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
-  }
+  },
+  "repository": "git@github.com:odinlabx/labx.git",
+  "author": "Bruno Felipe <bfaa1999@gmail.com>",
+  "license": "MIT"
 }
