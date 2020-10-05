@@ -1,0 +1,38 @@
+{
+  "include": [
+    "**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ],
+  "extends": "../../node_modules/adonis-preset-ts/tsconfig",
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "./",
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "Test/*": [
+        "./__test__/*"
+      ],
+      "App/*": [
+        "./app/*"
+      ],
+      "Contracts/*": [
+        "./contracts/*"
+      ],
+      "Database/*": [
+        "./database/*"
+      ]
+    },
+    "types": [
+      "@adonisjs/core",
+      "@adonisjs/auth",
+      "@adonisjs/lucid",
+      "@hipsjs/adonis-lucid-uuid",
+      "@adonisjs/mail",
+      "@adonisjs/view"
+    ]
+  }
+}
