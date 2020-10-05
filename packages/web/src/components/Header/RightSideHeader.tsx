@@ -1,37 +1,56 @@
-import { AiOutlineLink } from 'react-icons/ai'
-import { BiWorld } from 'react-icons/bi'
-import { HiViewGrid } from 'react-icons/hi'
+import { useCallback } from 'react'
+import { CgLogOut } from 'react-icons/cg'
 
-import { HStack, IconButton, Divider, useColorModeValue } from '@chakra-ui/core'
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuTransition,
+  MenuItem,
+  HStack,
+  Avatar,
+  useColorModeValue,
+  MenuGroup,
+  MenuDivider,
+  AvatarBadge
+} from '@chakra-ui/core'
+import { Icon } from '@chakra-ui/icons'
+
+import { useAuth } from '~/context/auth'
+
+import ToggleThemeButton from '../ToggleThemeButton'
 
 export default function RightSideHeader() {
-  const dividerColor = useColorModeValue('gray.300', 'gray.600')
+  const { signOut } = useAuth()
+  const menuColor = useColorModeValue('gray.700', 'gray.300')
+
+  const handleSignOut = useCallback(() => {
+    signOut()
+  }, [signOut])
 
   return (
-    <HStack spacing={2} display={{ base: 'none', md: 'flex' }} h={8}>
-      <IconButton
-        aria-label="Notifications"
-        size="sm"
-        variant="ghost"
-        borderRadius="50%"
-        colorScheme="gray"
-        icon={<BiWorld size={20} />}
-      />
-      <IconButton
-        aria-label="Link"
-        size="sm"
-        variant="ghost"
-        borderRadius="50%"
-        icon={<AiOutlineLink size={18} />}
-      />
-      <IconButton
-        aria-label="Random"
-        size="sm"
-        variant="ghost"
-        borderRadius="50%"
-        icon={<HiViewGrid size={18} />}
-      />
-      <Divider orientation="vertical" h="75%" borderLeftColor={dividerColor} />
+    <HStack spacing={4}>
+      <Menu closeOnSelect={false}>
+        <Avatar as={MenuButton} size="sm" name="">
+          <AvatarBadge boxSize="1.25em" bg="green.500" />
+        </Avatar>
+        <MenuTransition>
+          {styles => {
+            return (
+              <MenuList sx={styles} color={menuColor}>
+                <MenuGroup title="Preferências">
+                  <ToggleThemeButton isMenuList />
+                </MenuGroup>
+                <MenuDivider />
+                <MenuItem onClick={handleSignOut}>
+                  <Icon as={CgLogOut} boxSize={4} mr={4} />
+                  <span>Logout</span>
+                </MenuItem>
+              </MenuList>
+            )
+          }}
+        </MenuTransition>
+      </Menu>
     </HStack>
   )
 }

@@ -39,7 +39,6 @@ export default function Login() {
 
   const handleSubmit = useCallback(
     async (data: CreateFormData) => {
-      console.log(data)
       setLoading(true)
 
       const isValid = await validateErrors({ formRef, data, shape })

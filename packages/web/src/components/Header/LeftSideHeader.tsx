@@ -1,56 +1,59 @@
-import { useCallback } from 'react'
-import { CgLogOut } from 'react-icons/cg'
+import { AiOutlineLink } from 'react-icons/ai'
+import { BiWorld, BiPlus } from 'react-icons/bi'
 
 import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuTransition,
-  MenuItem,
   HStack,
-  Avatar,
+  IconButton,
+  Divider,
   useColorModeValue,
-  MenuGroup,
-  MenuDivider,
-  AvatarBadge
+  Tooltip,
+  useDisclosure
 } from '@chakra-ui/core'
-import { Icon } from '@chakra-ui/icons'
 
-import { useAuth } from '~/context/auth'
-
-import ToggleThemeButton from '../ToggleThemeButton'
+import ModalTask from '../ModalTask'
 
 export default function LeftSideHeader() {
-  const { signOut } = useAuth()
-  const menuColor = useColorModeValue('gray.700', 'gray.300')
-
-  const handleSignOut = useCallback(() => {
-    signOut()
-  }, [signOut])
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const dividerColor = useColorModeValue('gray.300', 'gray.600')
 
   return (
-    <HStack spacing={4}>
-      <Menu closeOnSelect={false}>
-        <Avatar as={MenuButton} size="sm" name="">
-          <AvatarBadge boxSize="1.25em" bg="green.500" />
-        </Avatar>
-        <MenuTransition>
-          {styles => {
-            return (
-              <MenuList sx={styles} color={menuColor}>
-                <MenuGroup title="Preferências">
-                  <ToggleThemeButton isMenuList />
-                </MenuGroup>
-                <MenuDivider />
-                <MenuItem onClick={handleSignOut}>
-                  <Icon as={CgLogOut} boxSize={4} mr={4} />
-                  <span>Logout</span>
-                </MenuItem>
-              </MenuList>
-            )
-          }}
-        </MenuTransition>
-      </Menu>
-    </HStack>
+    <>
+      <HStack spacing={2} display={{ base: 'none', md: 'flex' }} h={8}>
+        <Tooltip hasArrow label="Notificações">
+          <IconButton
+            aria-label="Notifications"
+            size="sm"
+            variant="ghost"
+            borderRadius="50%"
+            colorScheme="gray"
+            icon={<BiWorld size={20} />}
+          />
+        </Tooltip>
+        <IconButton
+          aria-label="Link"
+          size="sm"
+          variant="ghost"
+          borderRadius="50%"
+          icon={<AiOutlineLink size={18} />}
+        />
+        <Tooltip hasArrow label="Criar Tarefa">
+          <IconButton
+            aria-label="Random"
+            size="sm"
+            variant="ghost"
+            borderRadius="50%"
+            icon={<BiPlus size={18} />}
+            onClick={onOpen}
+          />
+        </Tooltip>
+
+        <Divider
+          orientation="vertical"
+          h="75%"
+          borderLeftColor={dividerColor}
+        />
+      </HStack>
+      <ModalTask isOpen={isOpen} onClose={onClose} />
+    </>
   )
 }

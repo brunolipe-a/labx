@@ -21,7 +21,7 @@ export default function Content({ children, breadcrumbs }: ContentProps) {
     <Stack
       gridArea="content"
       bg={bgContent}
-      px={8}
+      p={6}
       overflow="overlay"
       borderTopRightRadius={{ base: borderSize, md: 0 }}
       borderBottomLeftRadius={{ base: 0, md: borderSize }}

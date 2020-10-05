@@ -66,7 +66,6 @@ const AuthProvider = ({ children }: WithChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const signOut = useCallback((): void => {
-    console.log('teste')
     localStorage.removeItem('@Labx:token')
     localStorage.removeItem('@Labx:keep')
 
@@ -124,8 +123,6 @@ const AuthProvider = ({ children }: WithChildren) => {
           errors: ApiFieldError[]
         }>
 
-        console.log(response.data.errors)
-
         return { isSuccess: false, errors: response.data.errors }
       }
     },
@@ -141,8 +138,6 @@ const AuthProvider = ({ children }: WithChildren) => {
       const { response } = err as AxiosError<{
         errors: ApiFieldError[]
       }>
-
-      console.log(response?.data.errors)
 
       return { isSuccess: false, errors: response?.data.errors }
     }

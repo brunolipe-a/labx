@@ -1,7 +1,7 @@
 import { theme } from '@chakra-ui/core'
 import { merge } from '@chakra-ui/utils'
 
-export const customTheme: typeof theme = merge(theme, {
+const mytheme = merge(theme, {
   fonts: {
     body: 'Roboto, system-ui, sans-serif',
     heading: 'Roboto, system-ui, sans-serif',
@@ -29,19 +29,10 @@ export const customTheme: typeof theme = merge(theme, {
       800: '#2B2B66',
       900: '#20204D'
     },
-    // gray: {
-    //   50: '#F7F8FC',
-    //   100: '#EDEEF7',
-    //   200: '#E2E2F0',
-    //   300: '#CBCDE0',
-    //   400: '#A0A1C0',
-    //   500: '#717196',
-    //   600: '#4B4A68',
-    //   700: '#2E2D48',
-    //   750: '#252339',
-    //   800: '#1C1A2C',
-    //   900: '#1A1723'
-    // },
+    text: {
+      light: 'rgba(255,255,255,0.92)',
+      dark: '#1A1E2C'
+    },
     gray: {
       50: '#F7FAFC',
       100: '#EDF1F7',
@@ -66,7 +57,7 @@ export const customTheme: typeof theme = merge(theme, {
       800: '#7A1830',
       900: '#591223'
     },
-    green: {
+    teal: {
       100: '#CAF2EA',
       200: '#62E3C9',
       300: '#2FC9AB',
@@ -79,3 +70,19 @@ export const customTheme: typeof theme = merge(theme, {
     }
   }
 })
+
+const colors = mytheme.colors
+
+export const customTheme = {
+  ...mytheme,
+  colors: {
+    ...mytheme.colors,
+    gradient: {
+      brand: `linear-gradient(90deg, ${colors.brand[400]} 10%, ${colors.brand[600]} 100%)`,
+      brand600: `linear-gradient(90deg, ${colors.brand[600]} 10%, ${colors.brand[500]} 100%)`,
+      red: `linear-gradient(90deg, ${colors.red[400]} 10%, ${colors.red[600]} 100%)`,
+      purple: `linear-gradient(90deg, ${colors.brand[600]} 10%, ${colors.purple[500]} 100%)`,
+      green: `linear-gradient(90deg, ${colors.green[500]} 10%, ${colors.green[600]} 100%)`
+    }
+  }
+}

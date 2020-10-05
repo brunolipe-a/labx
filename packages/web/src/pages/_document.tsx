@@ -11,7 +11,7 @@ import Document, {
 class MyDocument extends Document<DocumentProps> {
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="pt">
         <Head>
           <meta charSet="utf-8" />
           <title>Labx</title>
@@ -40,7 +40,7 @@ class MyDocument extends Document<DocumentProps> {
           />
         </Head>
         <body>
-          <ColorModeScript defaultColorMode="light" />
+          <ColorModeScript defaultColorMode="dark" />
           <Main />
           <NextScript />
         </body>

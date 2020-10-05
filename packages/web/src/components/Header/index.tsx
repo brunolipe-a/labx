@@ -52,8 +52,9 @@ export default function Header() {
         alt="Logo Labx"
         display={{ base: 'block', md: 'none' }}
       />
-      <RightSideHeader />
       <LeftSideHeader />
+      <RightSideHeader />
+
       <Drawer
         isOpen={isOpen}
         placement="left"

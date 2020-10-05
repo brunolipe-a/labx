@@ -24,7 +24,7 @@ export default function Breadcrumb({ crumbs }: BreadcrumbProps) {
 
   return (
     <ChakraBreadcrumb
-      py={4}
+      mb={4}
       spacing={3}
       separator={<ChevronRightIcon color="gray.500" />}
     >
