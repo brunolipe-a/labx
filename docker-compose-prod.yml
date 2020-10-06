@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .nginx/conf.d/:/etc/nginx/conf.d/
+
+
+  server:
+    image: labx-server
+    container_name: server
+    restart: unless-stopped
+    ports:
+      - '3333:3333'
+    volumes:
+      - '.:/usr/app'
+    command: 'yarn server:start-prod'
+
+  database:
+    image: postgres
+    container_name: database
+    volumes:
+      - '.docker/database:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: labx
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+
+volumes:
+  database:
+    driver: local

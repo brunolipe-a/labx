@@ -9,7 +9,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   SlideFade,
@@ -60,6 +59,7 @@ export default function ModalTask({ isOpen, onClose }: ModalTaskProps) {
 
       inputRef.current.value = ''
       setHasTasks(true)
+      inputRef.current.focus()
     }
   }, [])
 
@@ -89,6 +89,8 @@ export default function ModalTask({ isOpen, onClose }: ModalTaskProps) {
         setTimeout(() => {
           setTasks([])
         }, 300)
+
+        return
       }
 
       setTasks(state => {
@@ -145,7 +147,7 @@ export default function ModalTask({ isOpen, onClose }: ModalTaskProps) {
                     </Button>
                     <ModalCloseButton position="inherit" size="sm" ml="auto" />
                   </ModalHeader>
-                  <ModalBody as={Stack} px={0}>
+                  <ModalBody as={Stack} px={0} overflow="overlay">
                     <HStack alignItems="center" px={5} py={3}>
                       <BiPlus size={22} />
                       <Text fontWeight="bold" color="green.500" pl={1}>
@@ -170,84 +172,75 @@ export default function ModalTask({ isOpen, onClose }: ModalTaskProps) {
                       <CgCornerDownLeft size={24} style={{ opacity: '0.5' }} />
                     </HStack>
 
-                    <SlideFade
-                      initialOffset="-10px"
-                      timeout={200}
-                      in={hasTasks}
+                    <Collapse
+                      display="flex"
+                      flexDir="column"
+                      style={styles}
+                      alignItems="flex-start"
+                      isOpen={hasTasks}
+                      p={0}
                     >
-                      {styles => (
-                        <Stack
-                          style={styles}
-                          alignItems="flex-start"
-                          spacing={0}
-                          p={0}
-                        >
-                          <Divider opacity="1" />
-                          <Box px={4} py={1}>
+                      <Divider opacity="1" />
+                      <Box px={4} py={1}>
+                        <Text fontSize="xs" fontWeight="medium" opacity="0.7">
+                          CRIADAS RECENTEMENTE
+                        </Text>
+                      </Box>
+
+                      {tasks.map(({ id, value, deleted }) => (
+                        <Flex flexDir="column" key={id} w="100%">
+                          <Divider
+                            opacity="1"
+                            display={deleted ? 'none' : 'block'}
+                          />
+                          <Collapse
+                            p={4}
+                            display="flex"
+                            alignItems="center"
+                            isOpen={!deleted}
+                            delay={100}
+                            maxW="100%"
+                          >
                             <Text
-                              fontSize="xs"
+                              fontSize="sm"
                               fontWeight="medium"
-                              opacity="0.7"
+                              color="brand.500"
                             >
-                              CRIADAS RECENTEMENTE
+                              {`TASKID-${id}`}
                             </Text>
-                          </Box>
 
-                          {tasks.map(({ id, value, deleted }) => (
-                            <Flex flexDir="column" key={id} w="100%">
-                              <Divider
-                                opacity="1"
-                                display={deleted ? 'none' : 'block'}
-                              />
-                              <Collapse
-                                p={4}
-                                display="flex"
-                                alignItems="center"
-                                isOpen={!deleted}
-                                maxW="100%"
+                            <Editable
+                              defaultValue={value}
+                              fontWeight="medium"
+                              mx={4}
+                              flex="1"
+                              onSubmit={nextValue =>
+                                handleEditting(id, nextValue)
+                              }
+                            >
+                              <EditablePreview noOfLines={1} />
+                              <EditableInput />
+                            </Editable>
+                            <Tooltip hasArrow label="Remover da lista">
+                              <Button
+                                size="sm"
+                                fontSize="xs"
+                                color="pink.400"
+                                variant="link"
+                                _hover={{
+                                  textDecor: 'none',
+                                  opacity: '0.5'
+                                }}
+                                onClick={() => handleRemove(id)}
+                                ml="auto"
                               >
-                                <Text
-                                  fontSize="sm"
-                                  fontWeight="medium"
-                                  color="brand.500"
-                                >
-                                  {`TASKID-${id}`}
-                                </Text>
-
-                                <Editable
-                                  defaultValue={value}
-                                  fontWeight="medium"
-                                  mx={4}
-                                  flex="1"
-                                  onSubmit={nextValue =>
-                                    handleEditting(id, nextValue)
-                                  }
-                                >
-                                  <EditablePreview noOfLines={1} />
-                                  <EditableInput />
-                                </Editable>
-                                <Tooltip hasArrow label="Remover da lista">
-                                  <Button
-                                    size="sm"
-                                    fontSize="xs"
-                                    color="pink.400"
-                                    variant="link"
-                                    _hover={{
-                                      textDecor: 'none',
-                                      opacity: '0.5'
-                                    }}
-                                    onClick={() => handleRemove(id)}
-                                    ml="auto"
-                                  >
-                                    Tarefa não salva
-                                  </Button>
-                                </Tooltip>
-                              </Collapse>
-                            </Flex>
-                          ))}
-                        </Stack>
-                      )}
-                    </SlideFade>
+                                Tarefa não salva
+                              </Button>
+                            </Tooltip>
+                          </Collapse>
+                        </Flex>
+                      ))}
+                    </Collapse>
                   </ModalBody>
                 </ModalContent>
               )}
