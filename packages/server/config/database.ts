@@ -40,8 +40,7 @@ const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
       connection: {
         filename: Application.tmpPath('db.sqlite3')
       },
-      useNullAsDefault: true,
-      healthCheck: true
+      useNullAsDefault: true
     },
     /*
     |--------------------------------------------------------------------------
