@@ -12,10 +12,17 @@
     "lint": "eslint --ext .tsx,.ts .",
     "type:check": "tsc -p ./packages/*/tsconfig.json",
     "test": "yarn workspaces run test",
+
     "web:start": "yarn workspace @labx/web dev",
     "web:test": "yarn workspace @labx/web test",
+
     "server:start": "yarn workspace @labx/server start",
-    "server:test": "yarn workspace @labx/server test"
+    "server:start-prod": "yarn workspace @labx/server start:prod",
+    "server:test": "yarn workspace @labx/server test",
+
+    "docker:build": "docker build . -t labx-server",
+    "docker:prod": "docker-compose -f docker-compose-prod.yml up -d --force-recreate"
+
 
   },
   "husky": {

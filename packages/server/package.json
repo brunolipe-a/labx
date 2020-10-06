@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node ace build",
     "start": "node ace serve --watch",
+    "start:prod": "yarn build && pm2-runtime build/server.js --name @labx/server",
     "test": "yarn build && node build/japaFile.js",
     "test:coverage": "nyc --reporter=lcov --report-dir='./coverage' yarn test"
   },
