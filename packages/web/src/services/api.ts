@@ -8,7 +8,7 @@ export type ApiFieldError = {
 const urls = {
   test: 'http://localhost:3334',
   development: 'http://localhost:3333/',
-  production: 'https://api.odinlabx.xyz/'
+  production: 'https://www.api.odinlabx.xyz/'
 }
 
 const api = axios.create({
